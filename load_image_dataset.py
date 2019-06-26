@@ -9,7 +9,7 @@ def get_class_names(path):
     return names
 
 def load_image_dataset(path, set_names,
-                       shuffle=False, shuffle_seed=None,
+                       shuffle=True, shuffle_seed=None,
                        x_dtype='uint8', y_dtype='uint32'):
     if len(set_names) == 0:
         raise ValueError('At least one set name is required.')

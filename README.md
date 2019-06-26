@@ -48,13 +48,13 @@ Note that the comma after `(x_train, y_train)` is required, because the function
 
 ```python
 load_image_dataset(path, set_names,
-                   shuffle=False, shuffle_seed=None,
+                   shuffle=True, shuffle_seed=None,
                    x_dtype='uint8', y_dtype='uint32')
 ```
 
 - **`path:`** Path to the dataset directory.
 - **`set_names:`** List of the data subsets (subdirectories of the dataset directory).
-- **`shuffle:`** Whether to shuffle the samples. If false, instances will be sorted by file name.
+- **`shuffle:`** Whether to shuffle the samples. If false, instances will be sorted by class name and file name.
 - **`shuffle_seed:`** Random seed used for shuffling (see the [docs](https://docs.python.org/3/library/random.html#random.seed)).
 - **`x_dtype:`** NumPy data type for the X arrays (see the [docs](https://www.numpy.org/devdocs/user/basics.types.html)).
 - **`y_dtype:`** NumPy data type for the Y arrays (see the [docs](https://www.numpy.org/devdocs/user/basics.types.html)).
