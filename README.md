@@ -1,6 +1,6 @@
 # Load Image Dataset
 
-Let's say you have an image dataset in a directory like this:
+Let's say you have an image dataset in a directory which looks like this:
 
 ```
 data/
