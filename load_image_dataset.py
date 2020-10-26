@@ -3,17 +3,6 @@ import random
 import imageio
 import numpy as np
 
-def get_class_names(subset_path):
-    """Get the class names for a subset.
-
-    Args:
-    subset_path: Path to the subset directory.
-    Returns a sorted list of class names.
-    """
-    names = [name for name in os.listdir(subset_path) if os.path.isdir(os.path.join(subset_path, name))]
-    names.sort()
-    return names
-
 def load_image_dataset(dataset_path, set_names,
                        shuffle=True, seed=None,
                        x_dtype='uint8', y_dtype='uint32'):
@@ -31,7 +20,7 @@ def load_image_dataset(dataset_path, set_names,
     """
     if len(set_names) == 0:
         raise ValueError('At least one set name is required.')
-    sets_class_names = [get_class_names(os.path.join(dataset_path, set_name)) for set_name in set_names]
+    sets_class_names = [_get_class_names(os.path.join(dataset_path, set_name)) for set_name in set_names]
     for i in range(1, len(sets_class_names)):
         if sets_class_names[i] != sets_class_names[0]:
             raise RuntimeError('Class names are not consistent.')
@@ -64,3 +53,14 @@ def load_image_dataset(dataset_path, set_names,
         y = np.array(y, dtype=y_dtype)
         dataset.append((x, y))
     return tuple(dataset)
+
+def _get_class_names(subset_path):
+    """Get the class names for a subset.
+
+    Args:
+    subset_path: Path to the subset directory.
+    Returns a sorted list of class names.
+    """
+    names = [name for name in os.listdir(subset_path) if os.path.isdir(os.path.join(subset_path, name))]
+    names.sort()
+    return names
