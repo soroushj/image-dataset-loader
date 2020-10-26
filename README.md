@@ -1,4 +1,4 @@
-# Load Image Dataset
+# image-dataset-loader: Load image datasets as NumPy arrays
 
 Suppose you have an image dataset in a directory which looks like this:
 
@@ -24,12 +24,12 @@ data/
       ...
 ```
 
-You can use the `load_image_dataset` function to load this dataset as NumPy arrays:
+You can use the `image_dataset_loader.load` function to load this dataset as NumPy arrays:
 
 ```python
-from load_image_dataset import load_image_dataset
+import image_dataset_loader
 
-(x_train, y_train), (x_test, y_test) = load_image_dataset('data', ['train', 'test'])
+(x_train, y_train), (x_test, y_test) = image_dataset_loader.load('./data', ['train', 'test'])
 ```
 
 The shape of the `x_*` arrays will be `(instances, rows, cols, channels)` for color images and `(instances, rows, cols)` for grayscale images.
@@ -43,7 +43,7 @@ So, in this example, `cats` and `dogs` will be represented by `0` and `1`, respe
 You can also load a single data subset. For example:
 
 ```python
-(x_train, y_train), = load_image_dataset('data', ['train'])
+(x_train, y_train), = image_dataset_loader.load('./data', ['train'])
 ```
 
 Note that the comma after `(x_train, y_train)` is required, because the function always returns a tuple of tuples.
@@ -51,15 +51,15 @@ Note that the comma after `(x_train, y_train)` is required, because the function
 ## API
 
 ```python
-load_image_dataset(dataset_path, set_names,
-                   shuffle=True, seed=None,
-                   x_dtype='uint8', y_dtype='uint32')
+load(dataset_path, set_names,
+     shuffle=True, seed=None,
+     x_dtype='uint8', y_dtype='uint32')
 ```
 
 - **`dataset_path:`** Path to the dataset directory.
 - **`set_names:`** List of the data subsets (subdirectories of the dataset directory).
 - **`shuffle:`** Whether to shuffle the samples. If false, instances will be sorted by class name and then by file name.
 - **`seed:`** Random seed used for shuffling (see the [docs](https://docs.python.org/3/library/random.html#random.seed)).
-- **`x_dtype:`** NumPy data type for the X arrays (see the [docs](https://www.numpy.org/devdocs/user/basics.types.html)).
-- **`y_dtype:`** NumPy data type for the Y arrays (see the [docs](https://www.numpy.org/devdocs/user/basics.types.html)).
+- **`x_dtype:`** NumPy data type for the X arrays (see the [docs](https://numpy.org/devdocs/user/basics.types.html)).
+- **`y_dtype:`** NumPy data type for the Y arrays (see the [docs](https://numpy.org/devdocs/user/basics.types.html)).
 - Returns a tuple of `(x, y)` tuples corresponding to `set_names`.
