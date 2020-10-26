@@ -15,7 +15,7 @@ def get_class_names(subset_path):
     return names
 
 def load_image_dataset(dataset_path, set_names,
-                       shuffle=True, shuffle_seed=None,
+                       shuffle=True, seed=None,
                        x_dtype='uint8', y_dtype='uint32'):
     """Load an image dataset as NumPy arrays.
 
@@ -24,7 +24,7 @@ def load_image_dataset(dataset_path, set_names,
     set_names: List of the data subsets (subdirectories of the dataset directory).
     shuffle: Whether to shuffle the samples. If false, instances will be sorted by
         class name and then by file name.
-    shuffle_seed: Random seed used for shuffling.
+    seed: Random seed used for shuffling.
     x_dtype: NumPy data type for the X arrays.
     y_dtype: NumPy data type for the Y arrays.
     Returns a tuple of (x, y) tuples corresponding to set_names.
@@ -39,7 +39,7 @@ def load_image_dataset(dataset_path, set_names,
     dataset = []
     instance_shape = None
     if shuffle:
-        rand = random.Random(shuffle_seed)
+        rand = random.Random(seed)
     for set_name in set_names:
         x = []
         y = []
