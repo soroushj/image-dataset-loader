@@ -20,7 +20,7 @@ def load(dataset_path, set_names,
     """
     if len(set_names) == 0:
         raise ValueError('At least one set name is required.')
-    sets_class_names = [_get_class_names(os.path.join(dataset_path, set_name)) for set_name in set_names]
+    sets_class_names = [_sorted_class_names(os.path.join(dataset_path, set_name)) for set_name in set_names]
     for i in range(1, len(sets_class_names)):
         if sets_class_names[i] != sets_class_names[0]:
             raise RuntimeError('Class names are not consistent.')
@@ -54,7 +54,7 @@ def load(dataset_path, set_names,
         dataset.append((x, y))
     return tuple(dataset)
 
-def _get_class_names(subset_path):
+def _sorted_class_names(subset_path):
     """Get the class names for a subset.
 
     Args:
