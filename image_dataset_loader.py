@@ -3,9 +3,9 @@ import random
 import imageio
 import numpy as np
 
-def load_image_dataset(dataset_path, set_names,
-                       shuffle=True, seed=None,
-                       x_dtype='uint8', y_dtype='uint32'):
+def load(dataset_path, set_names,
+         shuffle=True, seed=None,
+         x_dtype='uint8', y_dtype='uint32'):
     """Load an image dataset as NumPy arrays.
 
     Args:
