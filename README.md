@@ -1,5 +1,16 @@
 # image-dataset-loader: Load image datasets as NumPy arrays
 
+[![PyPI](https://img.shields.io/pypi/v/image-dataset-loader.svg)](https://pypi.org/project/image-dataset-loader/)
+[![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
+
+## Installation
+
+```bash
+pip install image-dataset-loader
+```
+
+## Overview
+
 Suppose you have an image dataset in a directory which looks like this:
 
 ```
