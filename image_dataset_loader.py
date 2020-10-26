@@ -30,8 +30,7 @@ def load(dataset_path, set_names,
     if shuffle:
         rand = random.Random(seed)
     for set_name in set_names:
-        x = []
-        y = []
+        x, y = [], []
         for class_index, class_name in enumerate(class_names):
             class_path = os.path.join(dataset_path, set_name, class_name)
             instance_paths = [os.path.join(class_path, name) for name in os.listdir(class_path)]
