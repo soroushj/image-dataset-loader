@@ -39,7 +39,7 @@ def load_image_dataset(dataset_path, set_names,
     dataset = []
     instance_shape = None
     if shuffle:
-        random.seed(shuffle_seed)
+        rand = random.Random(shuffle_seed)
     for set_name in set_names:
         x = []
         y = []
@@ -58,7 +58,7 @@ def load_image_dataset(dataset_path, set_names,
                 y.append(class_index)
         if shuffle:
             xy = list(zip(x, y))
-            random.shuffle(xy)
+            rand.shuffle(xy)
             x, y = zip(*xy)
         x = np.array(x, dtype=x_dtype)
         y = np.array(y, dtype=y_dtype)
