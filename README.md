@@ -40,7 +40,7 @@ You can use the `image_dataset_loader.load` function to load this dataset as Num
 ```python
 import image_dataset_loader
 
-(x_train, y_train), (x_test, y_test) = image_dataset_loader.load('./data', ['train', 'test'])
+(x_train, y_train), (x_test, y_test) = image_dataset_loader.load('path/to/data', ['train', 'test'])
 ```
 
 The shape of the `x_*` arrays will be `(instances, rows, cols, channels)` for color images and `(instances, rows, cols)` for grayscale images.
@@ -54,7 +54,7 @@ So, in this example, `cats` and `dogs` will be represented by `0` and `1`, respe
 You can also load a single data subset. For example:
 
 ```python
-(x_train, y_train), = image_dataset_loader.load('./data', ['train'])
+(x_train, y_train), = image_dataset_loader.load('path/to/data', ['train'])
 ```
 
 Note that the comma after `(x_train, y_train)` is required, because the function always returns a tuple of tuples.
@@ -69,7 +69,7 @@ load(dataset_path, set_names,
 
 - **`dataset_path:`** Path to the dataset directory.
 - **`set_names:`** List of the data subsets (subdirectories of the dataset directory).
-- **`shuffle:`** Whether to shuffle the samples. If false, instances will be sorted by class name and then by file name.
+- **`shuffle:`** Whether to shuffle the samples. If false, instances will be sorted by file name.
 - **`seed:`** Random seed used for shuffling (see the [docs](https://docs.python.org/3/library/random.html#random.seed)).
 - **`x_dtype:`** NumPy data type for the X arrays (see the [docs](https://numpy.org/devdocs/user/basics.types.html)).
 - **`y_dtype:`** NumPy data type for the Y arrays (see the [docs](https://numpy.org/devdocs/user/basics.types.html)).
