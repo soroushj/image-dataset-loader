@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='image-dataset-loader',
-    version='0.0.0',
+    version='0.0.1',
     url='https://github.com/soroushj/image-dataset-loader',
     author='Soroush Javadi',
     author_email='soroush.javadi@gmail.com',
