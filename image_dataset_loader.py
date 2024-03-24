@@ -32,9 +32,10 @@ def load(dataset_path, set_names,
         x, y = [], []
         for class_index, class_name in enumerate(class_names):
             class_path = os.path.join(dataset_path, set_name, class_name)
-            instance_paths = [os.path.join(class_path, name) for name in os.listdir(class_path)]
+            instance_names = os.listdir(class_path)
             if not shuffle:
-                instance_paths.sort()
+                instance_names.sort()
+            instance_paths = [os.path.join(class_path, name) for name in instance_names]
             for instance_path in instance_paths:
                 instance = imageio.imread(instance_path)
                 if instance_shape is None:
