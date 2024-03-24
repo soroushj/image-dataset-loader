@@ -69,7 +69,7 @@ load(dataset_path, set_names,
 
 - **`dataset_path:`** Path to the dataset directory.
 - **`set_names:`** List of the data subsets (subdirectories of the dataset directory).
-- **`shuffle:`** Whether to shuffle the samples. If false, instances will be sorted by file name.
+- **`shuffle:`** Whether to shuffle the samples. If false, instances will be sorted by class name and then by file name.
 - **`seed:`** Random seed used for shuffling (see the [docs](https://docs.python.org/3/library/random.html#random.seed)).
 - **`x_dtype:`** NumPy data type for the X arrays (see the [docs](https://numpy.org/devdocs/user/basics.types.html)).
 - **`y_dtype:`** NumPy data type for the Y arrays (see the [docs](https://numpy.org/devdocs/user/basics.types.html)).
