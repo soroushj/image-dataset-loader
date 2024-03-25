@@ -19,14 +19,16 @@ def load(dataset_path, set_names,
     Returns a tuple of (x, y) tuples corresponding to set_names.
     """
     if len(set_names) == 0:
-        raise ValueError('At least one set name is required.')
+        raise ValueError('At least one set name is required')
     sets_class_names = [_sorted_class_names(os.path.join(dataset_path, set_name)) for set_name in set_names]
     for i in range(1, len(sets_class_names)):
         if sets_class_names[i] != sets_class_names[0]:
-            raise RuntimeError('Class names are not consistent.')
+            raise RuntimeError(
+                'Class names are not consistent ' +
+                '(in sets: "' + set_names[0] + '" and "' + set_names[i] + '")')
     class_names = sets_class_names[0]
     dataset = []
-    instance_shape = None
+    first_instance_shape = None
     if shuffle:
         rand = random.Random(seed)
     for set_name in set_names:
@@ -39,10 +41,13 @@ def load(dataset_path, set_names,
             instance_paths = [os.path.join(class_path, name) for name in instance_names]
             for instance_path in instance_paths:
                 instance = imageio.imread(instance_path)
-                if instance_shape is None:
-                    instance_shape = instance.shape
-                elif instance_shape != instance.shape:
-                    raise RuntimeError('Instance shapes are not consistent.')
+                if first_instance_shape is None:
+                    first_instance_shape = instance.shape
+                    first_instance_path = instance_path
+                elif first_instance_shape != instance.shape:
+                    raise RuntimeError(
+                        'Instance shapes are not consistent ' +
+                        '(instances: "' + first_instance_path + '" and "' + instance_path + '")')
                 x.append(instance)
                 y.append(class_index)
         if shuffle:
